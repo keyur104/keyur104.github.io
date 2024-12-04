@@ -104,7 +104,7 @@ export default function Skills() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skillGroup, index) => (
+          {skills.map((skillGroup) => (
             <motion.div
               key={skillGroup.category}
               initial={{ opacity: 0, y: 20 }}
