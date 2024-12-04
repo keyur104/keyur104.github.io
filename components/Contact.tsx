@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from 'emailjs-com'
-import { ToastContainer, toast, ToastPosition } from 'react-toastify'
+import { ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const Contact = () => {
