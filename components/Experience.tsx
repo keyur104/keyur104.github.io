@@ -50,7 +50,7 @@ export default function Experience() {
       ]
     },
     {
-      title: 'Library Aid',
+      title: 'Library Aide',
       company: 'Dr. D.Y. Patil Institute of Technology',
       location: 'Pune, India',
       period: 'January 2019 – June 2019',
