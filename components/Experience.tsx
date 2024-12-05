@@ -111,7 +111,7 @@ export default function Experience() {
                     />
                   )}
                   {/* Library Aid Logo for D.Y. Patil */}
-                  {exp.company === 'Dr. D.Y. Patil Institute of Technology' && exp.title === 'Library Aid' && (
+                  {exp.company === 'Dr. D.Y. Patil Institute of Technology' && exp.title === 'Library Aide' && (
                     <img
                       src="/dpu_logo.jpeg" // Replace with your actual logo path
                       alt="D.Y. Patil Institute of Technology Logo"
