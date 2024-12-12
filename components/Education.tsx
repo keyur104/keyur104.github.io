@@ -15,7 +15,7 @@ export default function Education() {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-blue-400 mb-4">Education</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
             My academic background and qualifications
           </p>
         </motion.div>
