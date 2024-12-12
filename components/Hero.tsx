@@ -4,6 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Linkedin, Github, Mail } from 'lucide-react'
+import { Tooltip } from 'react-tooltip';
 
 export default function Hero() {
   return (
@@ -28,23 +29,50 @@ export default function Hero() {
             With three years of experience in full-stack development, object-oriented programming, and Java backend. Actively seeking Summer 2025 internship opportunities to apply and expand technical skills.
           </p>
           <div className="flex space-x-6 mb-8">
-            <a href="mailto:keyur.madane@gmail.com" className="text-gray-100 hover:text-purple-300 transition-colors transform hover:scale-110">
+            <a 
+              href="mailto:keyur.madane@gmail.com" 
+              data-tooltip-id="email-tooltip"
+              data-tooltip-content="Email"
+              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
+            >
               <Mail className="w-8 h-8" />
             </a>
-            <a href="https://linkedin.com/in/keyur-madane-104" target="_blank" rel="noopener noreferrer" className="text-gray-100 hover:text-purple-300 transition-colors transform hover:scale-110">
+            <Tooltip id="email-tooltip" />
+
+            <a 
+              href="https://linkedin.com/in/keyur-madane-104" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              data-tooltip-id="linkedin-tooltip"
+              data-tooltip-content="LinkedIn"
+              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
+            >
               <Linkedin className="w-8 h-8" />
             </a>
-            <a href="https://github.com/keyur104" target="_blank" rel="noopener noreferrer" className="text-gray-100 hover:text-purple-300 transition-colors transform hover:scale-110">
+            <Tooltip id="linkedin-tooltip" />
+
+            <a 
+              href="https://github.com/keyur104" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              data-tooltip-id="github-tooltip"
+              data-tooltip-content="GitHub"
+              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
+            >
               <Github className="w-8 h-8" />
             </a>
+            <Tooltip id="github-tooltip" />
           </div>
+          
           <Button
             className="bg-blue-700 hover:bg-blue-900 text-white px-10 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
-            size="lg" onClick={() => window.open('https://github.com/keyur104/resume/blob/main/KeyurMadane_Resume.pdf', '_blank')}
+            size="lg" 
+            onClick={() => window.open('https://github.com/keyur104/resume/blob/main/KeyurMadane_Resume.pdf', '_blank')}
           >
             My Resume
           </Button>
         </motion.div>
+        
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -55,8 +83,6 @@ export default function Hero() {
             <img
               src="/keyur-madane1.png"
               alt="Keyur Madane"
-              // width={400}
-              // height={400}
               className="object-cover shadow-lg transform hover:scale-105 transition-all border-none outline-none ring-0"
             />
           </div>
