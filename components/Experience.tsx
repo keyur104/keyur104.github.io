@@ -82,7 +82,7 @@ export default function Experience() {
         </motion.div>
 
         {/* Experience Cards */}
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full px-4">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -93,7 +93,8 @@ export default function Experience() {
               className="mb-12 relative"
             >
               <div className="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-md">
-                <div className="flex items-center gap-4">
+              
+                <div className="flex items-center justify-center gap-4">
                   {/* Infosys Logo */}
                   {exp.company === 'Infosys' && (
                     <img
@@ -126,12 +127,13 @@ export default function Experience() {
                       className="w-14 h-12 object-contain"
                     />
                   )}
-
-                  <h3 className="text-2xl font-bold text-blue-600 mb-2">{exp.title}</h3>
+                  <h3 className="text-2xl text-center font-bold text-blue-600 mb-2">{exp.title}</h3>
                 </div>
                 <div className="flex items-center text-white mb-4">
+                <div className="flex justify-center items-center mb-1">
                   <Briefcase className="w-5 h-5 mr-2 " />
                   <span className="mr-4 font-bold">{exp.company}</span>
+                  </div>
                   <MapPin className="w-5 h-5 mr-2" />
                   <span className="mr-4 font-bold">{exp.location}</span>
                   <Calendar className="w-5 h-5 mr-2 " />

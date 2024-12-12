@@ -51,13 +51,13 @@ export default function Hero() {
           transition={{ duration: 0.7 }}
           className="flex justify-center md:justify-end order-1 md:order-2"
         >
-          <div className="relative w-56 h-56 md:w-96 md:h-96 transform -translate-y-18">
+          <div className="relative w-56 h-56 md:w-96 md:h-96 transform -translate-y-18 ">
             <img
               src="/keyur-madane1.png"
               alt="Keyur Madane"
               // width={400}
               // height={400}
-              className="object-cover shadow-lg transform hover:scale-105 transition-all"
+              className="object-cover shadow-lg transform hover:scale-105 transition-all border-none outline-none ring-0"
             />
           </div>
         </motion.div>
