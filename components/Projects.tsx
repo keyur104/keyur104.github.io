@@ -8,6 +8,15 @@ import { FaJava } from 'react-icons/fa'
 
 const projects = [
   {
+    title: 'MCQ Generator Using ChatGPT API',
+    description:
+      'Designed a Django web app that uses the ChatGPT API to generate multiple-choice questions (MCQs) from a given text. The app processes the text, generates relevant MCQs, and stores them in a database along with their correct answers, enabling easy access and management of MCQs.',
+    tech: ['Django', 'Python', 'ChatGPT API', 'Web Development'],
+    links: {
+      github: '#',
+    },
+  },
+  {
     title: 'Video Anomaly Detection System',
     description:
       'Designed a video anomaly detection system using machine learning, accomplishing 90% accuracy in high-traffic areas. Implemented surveillance techniques, achieving a 30% reduction in security incidents across a 100,000 sq ft area.',
@@ -34,6 +43,16 @@ const projects = [
       github: '#',
     },
   },
+  {
+    title: 'Railway Reservation System with COVID-19 Features',
+    description:
+      'Developed a Railway Reservation System during the lockdown, designed to ensure social distancing within trains. Integrated functionality to verify COVID-19 vaccine certificates or test results during ticket booking. Additionally, the system could allocate new trains when there was a high crowd for a specific destination, ensuring safe travel during the pandemic.',
+    tech: ['Python', 'Database Management', 'Web Development'],
+    links: {
+      github: '#',
+    },
+  },
+  
 ]
 
 const icons: { [key: string]: JSX.Element } = {
