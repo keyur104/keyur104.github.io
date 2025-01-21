@@ -10,8 +10,8 @@ const projects = [
   {
     title: 'MCQ Generator Using ChatGPT API',
     description:
-      'Designed a Django web app that uses the ChatGPT API to generate multiple-choice questions (MCQs) from a given text. The app processes the text, generates relevant MCQs, and stores them in a database along with their correct answers, enabling easy access and management of MCQs.',
-    tech: ['Django', 'Python', 'ChatGPT API', 'Web Development'],
+      'Developed a Django web app that generates multiple-choice questions (MCQs) from a given text using the ChatGPT API. The app sends the generated MCQs to a Spring Boot REST API for storage and management. The Spring Boot API handles saving the data in a database, allowing for easy retrieval and management of MCQs.',
+    tech: ['Django', 'Python','Java', 'ChatGPT API','Spring Boot','REST API'],
     links: {
       github: '#',
     },
@@ -22,7 +22,7 @@ const projects = [
       'Designed a video anomaly detection system using machine learning, accomplishing 90% accuracy in high-traffic areas. Implemented surveillance techniques, achieving a 30% reduction in security incidents across a 100,000 sq ft area.',
     tech: ['Machine Learning', 'Computer Vision', 'Python'],
     links: {
-      github: '#',
+      github: 'https://github.com/keyur104/Anomaly-Detection.git',
     },
   },
   {
@@ -31,7 +31,7 @@ const projects = [
       'Developed a Django web app during a hackathon for managing government schemes, benefiting over 1,000+ personnel. Created fund management features that aim to reduce corruption risks by up to 40%.',
     tech: ['Django', 'Python', 'Web Development'],
     links: {
-      github: '#',
+      github: 'https://github.com/keyur104/GovScheme.git',
     },
   },
   {
@@ -49,7 +49,16 @@ const projects = [
       'Developed a Railway Reservation System during the lockdown, designed to ensure social distancing within trains. Integrated functionality to verify COVID-19 vaccine certificates or test results during ticket booking. Additionally, the system could allocate new trains when there was a high crowd for a specific destination, ensuring safe travel during the pandemic.',
     tech: ['Python', 'Database Management', 'Web Development'],
     links: {
-      github: '#',
+      github: 'https://github.com/keyur104/PandemicRailwayReservation.git',
+    },
+  },
+  {
+    title: 'Car Rental System',
+    description:
+      'Developed a Django web application that allows users to log in and rent self-driving cars. The system displays a list of available cars along with their rates, and users can choose and rent a car based on their preferences. An admin panel is provided to manage the car listings, including adding, updating, or removing cars. The app ensures a seamless user experience for car rental, with secure authentication and efficient car management for administrators.',
+    tech: ['Python','Django', 'Database Management'],
+    links: {
+      github: 'https://github.com/keyur104/CarRental.git',
     },
   },
   
@@ -115,8 +124,10 @@ export default function Projects() {
               </div>
               <div className="flex gap-4">
                 <a
-                  href={project.links.github}
+                  href={project.links.github !== '#' ? project.links.github : '#'}
                   className="text-gray-300 hover:text-white transition-colors inline-flex items-center gap-1"
+                  target={project.links.github !== '#' ? "_blank" : "_self"}  // Open in new tab unless the link is "#"
+                  rel={project.links.github !== '#' ? "noopener noreferrer" : ""}  
                 >
                   <Github className="w-4 h-4" />
                   Code
