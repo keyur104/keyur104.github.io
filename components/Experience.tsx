@@ -4,8 +4,16 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Briefcase } from 'lucide-react'
 
+interface ExperienceItem {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  achievements: string[];
+}
+
 export default function Experience() {
-  const experiences = [
+  const fullTimeExperience: ExperienceItem[] = [
     {
       title: 'Senior Systems Engineer',
       company: 'Infosys',
@@ -21,6 +29,27 @@ export default function Experience() {
         'Optimized CRM systems to enhance user experience and responsiveness, leading to a 15% reduction in support tickets.',
         'Ideated and accomplished product from scratch and helped scale business to more than 10 million users.',
         'Promoted within 6 months due to strong performance and organizational impacts.'
+      ]
+    }
+  ]
+
+  const partTimeExperience: ExperienceItem[] = [
+    {
+      title: 'Research Assistant - Software Engineer',
+      company: 'Arizona State University',
+      location: 'Tempe, AZ, USA',
+      period: 'May 2025 – Present',
+      achievements: [
+        'Automated Qualtrics survey dispatch via Spring Boot with CSV validation, cutting manual setup time by 90%.',
+        'Created custom CSV validation and error handling to ensure 100% data accuracy in survey scheduling.',
+        'Developing a Flutter cross-platform app with 10 gamified modules for dyslexic learners on Android and iOS.',
+        'Implemented adaptive gameplay and progression tracking to personalize difficulty and enhance learning outcomes.',
+        'Built scalable microservices architecture supporting educational technology research and accessibility innovation.',
+        'Designed RESTful APIs for seamless integration between backend services and cross-platform mobile applications.',
+        'Collaborated with research teams to implement data collection mechanisms for educational accessibility studies.',
+        'Utilized Agile methodologies to manage project timelines and deliver iterative improvements to research tools.',
+        'Conducted code reviews and implemented best practices to maintain high code quality and system reliability.',
+        'Contributed to academic research publications through technical implementation and data analysis support.'
       ]
     },
     {
@@ -45,117 +74,123 @@ export default function Experience() {
         'Led and organized technical events and workshops for students, improving their understanding of software development.',
         'Collaborated with faculty and students to curate a list of relevant topics for technical discussions and seminars.',
         'Motivated and guided team members in organizing and executing successful software-related events.',
-        'Managed and coordinated the software club’s projects, ensuring timely delivery and effective collaboration.',
+        'Managed and coordinated the software club\'s projects, ensuring timely delivery and effective collaboration.',
         'Helped bridge the gap between students and industry experts through guest lectures and interactive sessions.'
-      ]
-    },
-    {
-      title: 'Library Aide',
-      company: 'Dr. D.Y. Patil Institute of Technology',
-      location: 'Pune, India',
-      period: 'January 2019 – June 2019',
-      achievements: [
-        'Assisted students and faculty in locating and checking out books and materials, providing an organized library experience.',
-        'Managed and categorized books and other resources, ensuring the library was well-organized and accessible.',
-        'Supported library staff in inventory management and the maintenance of library records.',
-        'Provided customer service to students, helping them find study resources and other educational materials.',
-        'Ensured the library space remained clean and conducive to studying.'
       ]
     }
   ]
 
+  const renderExperienceCard = (exp: ExperienceItem, index: number, sectionDelay: number = 0) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: (index * 0.1) + sectionDelay }}
+      viewport={{ once: true }}
+      className="mb-12 relative"
+    >
+      <div className="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-md">
+        <div className="flex items-center justify-center gap-4">
+          {/* ASU Logo */}
+          {exp.company === 'Arizona State University' && (
+            <img
+              src="/asu_logo1.png"
+              alt="Arizona State University Logo"
+              className="w-14 h-12 object-contain"
+            />
+          )}
+          {/* Infosys Logo */}
+          {exp.company === 'Infosys' && (
+            <img
+              src="/infosys_logo.png"
+              alt="Infosys Logo"
+              className="w-14 h-12 object-contain"
+            />
+          )}
+          {/* Chegg Logo */}
+          {exp.company === 'Chegg' && (
+            <img
+              src="/chegg_logo.png"
+              alt="Chegg Logo"
+              className="w-14 h-12 object-contain"
+            />
+          )}
+          {/* D.Y. Patil Logo */}
+          {exp.company === 'Dr. D.Y. Patil Institute of Technology' && (
+            <img
+              src="/dpu_logo.jpeg"
+              alt="D.Y. Patil Institute of Technology Logo"
+              className="w-14 h-12 object-contain"
+            />
+          )}
+          <h3 className="text-2xl text-center font-bold text-blue-600 mb-2">{exp.title}</h3>
+        </div>
+        <div className="flex items-center text-white mb-4">
+          <div className="flex justify-center items-center mb-1">
+            <Briefcase className="w-5 h-5 mr-2" />
+            <span className="mr-4 font-bold">{exp.company}</span>
+          </div>
+          <MapPin className="w-5 h-5 mr-2" />
+          <span className="mr-4 font-bold">{exp.location}</span>
+          <Calendar className="w-5 h-5 mr-2" />
+          <span>{exp.period}</span>
+        </div>
+        <ul className="list-disc list-inside text-white font-bold space-y-2">
+          {exp.achievements.map((achievement, i) => (
+            <motion.li
+              key={i}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              {achievement}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  )
+
   return (
     <section id="experience" className="relative py-20 px-6">
-      {/* Main Content */}
       <div className="container mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-blue-600 mb-4">Professional Experience</h2>
-          <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
-          A blend of hands-on experience in software engineering, leadership, and educational support.
-          </p>
+          
         </motion.div>
 
-        {/* Experience Cards */}
-        <div className="w-full px-4">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="mb-12 relative"
-            >
-              <div className="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-md">
-              
-                <div className="flex items-center justify-center gap-4">
-                  {/* Infosys Logo */}
-                  {exp.company === 'Infosys' && (
-                    <img
-                      src="/infosys_logo.png" // Replace with your actual Infosys logo path
-                      alt="Infosys Logo"
-                      className="w-14 h-12 object-contain"
-                    />
-                  )}
-                  {/* Chegg Logo for Chegg Expert */}
-                  {exp.company === 'Chegg' && (
-                    <img
-                      src="/chegg_logo.png" // Replace with your actual Chegg logo path
-                      alt="Chegg Logo"
-                      className="w-14 h-12 object-contain"
-                    />
-                  )}
-                  {/* Library Aid Logo for D.Y. Patil */}
-                  {exp.company === 'Dr. D.Y. Patil Institute of Technology' && exp.title === 'Library Aide' && (
-                    <img
-                      src="/dpu_logo.jpeg" // Replace with your actual logo path
-                      alt="D.Y. Patil Institute of Technology Logo"
-                      className="w-14 h-12 object-contain"
-                    />
-                  )}
-                  {/* Software Club Logo for Vice President */}
-                  {exp.company === 'Dr. D.Y. Patil Institute of Technology' && exp.title === 'Software Club Vice President' && (
-                    <img
-                      src="/dpu_logo.jpeg" // Replace with your actual logo path
-                      alt="D.Y. Patil Institute of Technology Logo"
-                      className="w-14 h-12 object-contain"
-                    />
-                  )}
-                  <h3 className="text-2xl text-center font-bold text-blue-600 mb-2">{exp.title}</h3>
-                </div>
-                <div className="flex items-center text-white mb-4">
-                <div className="flex justify-center items-center mb-1">
-                  <Briefcase className="w-5 h-5 mr-2 " />
-                  <span className="mr-4 font-bold">{exp.company}</span>
-                  </div>
-                  <MapPin className="w-5 h-5 mr-2" />
-                  <span className="mr-4 font-bold">{exp.location}</span>
-                  <Calendar className="w-5 h-5 mr-2 " />
-                  <span>{exp.period}</span>
-                </div>
-                <ul className="list-disc list-inside text-white font-bold space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      {achievement}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Professional Experience Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-3xl font-bold text-blue-500 mb-8 text-center">Professional Experience</h3>
+          <div className="w-full px-4">
+            {fullTimeExperience.map((exp, index) => renderExperienceCard(exp, index, 0))}
+          </div>
+        </motion.div>
+
+        {/* Research, Leadership & Part-Time Experience Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-3xl font-bold text-blue-500 mb-8 text-center">Research, Leadership & Part-Time Experience</h3>
+          <div className="w-full px-4">
+            {partTimeExperience.map((exp, index) => renderExperienceCard(exp, index, 0.2))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

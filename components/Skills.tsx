@@ -2,9 +2,10 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Code, Globe, Database, PenTool, Server, Cpu } from 'lucide-react'
+import { Code, Globe, Database, PenTool, Server, Cpu, Handshake } from 'lucide-react'
 import {
-  FaJava, FaHtml5, FaCss3Alt, FaBootstrap, FaGit, FaSalesforce
+  FaJava, FaHtml5, FaCss3Alt, FaBootstrap, FaGit, FaSalesforce,
+  FaComments, FaUsers, FaPuzzlePiece, FaExchangeAlt, FaClock, FaUserTie
 } from 'react-icons/fa'
 import {
   SiPython, SiCplusplus, SiJavascript, SiDjango, SiSpringboot,
@@ -12,6 +13,7 @@ import {
 } from 'react-icons/si'
 import { GiSkills } from 'react-icons/gi'
 import { AiOutlineApi } from 'react-icons/ai';
+import { Gauge, Network } from 'lucide-react'
 
 
 
@@ -63,24 +65,24 @@ const skills = [
     category: 'Systems & Concepts',
     icon: <Server className="w-6 h-6 text-blue-600" />,
     items: [
-      { name: 'Software Troubleshooting', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Software Security', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Multithreading', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Servlets', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Data Structures', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Debugging', icon: <GiSkills className="text-gray-600 w-6 h-6" /> }
+      { name: 'Distributed Systems', icon: <Network className="text-green-500 w-6 h-6" /> },
+      { name: 'API Design', icon: <AiOutlineApi className="text-blue-500 w-6 h-6" /> },
+      { name: 'Multithreading', icon: <Cpu className="text-purple-500 w-6 h-6" /> },
+      { name: 'System Architecture', icon: <Database className="text-orange-500 w-6 h-6" /> },
+      { name: 'Data Structures', icon: <Code className="text-yellow-500 w-6 h-6" /> },
+      { name: 'Performance Optimization', icon: <Gauge className="text-red-500 w-6 h-6" /> }
     ]
   },
   {
     category: 'Soft Skills',
-    icon: <Cpu className="w-6 h-6 text-blue-600" />,
+    icon: <Handshake className="w-6 h-6 text-blue-600" />,
     items: [
-      { name: 'Effective Communication', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Team Collaboration', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Problem-Solving', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Adaptability', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Time Management', icon: <GiSkills className="text-gray-600 w-6 h-6" /> },
-      { name: 'Leadership', icon: <GiSkills className="text-gray-600 w-6 h-6" /> }
+      { name: 'Effective Communication', icon: <FaComments className="text-teal-500 w-6 h-6" /> },
+      { name: 'Team Collaboration', icon: <FaUsers className="text-blue-400 w-6 h-6" /> },
+      { name: 'Problem-Solving', icon: <FaPuzzlePiece className="text-yellow-500 w-6 h-6" /> },
+      { name: 'Adaptability', icon: <FaExchangeAlt className="text-green-500 w-6 h-6" /> },
+      { name: 'Time Management', icon: <FaClock className="text-purple-500 w-6 h-6" /> },
+      { name: 'Leadership', icon: <FaUserTie className="text-pink-500 w-6 h-6" /> }
     ]
   }
 ]

@@ -23,10 +23,10 @@ export default function Hero() {
             <span className="text-6xl md:text-7xl text-gradient-to-r from-purple-200 to-indigo-300">Keyur Madane</span>
           </h1>
           <h2 className="text-xl md:text-2xl text-blue-200 mb-6 font-semibold">
-            a <span className="text-gradient-to-r from-blue-500 to-blue-600">Software Engineering Student</span>
+          <span className="text-gradient-to-r from-blue-500 to-blue-600">Software Engineer | 3+ Years Experience | Master's Student</span>
           </h2>
           <p className="text-gray-100 mb-8 text-lg leading-relaxed max-w-xl">
-            With three years of experience in full-stack development, object-oriented programming, and Java backend. Actively seeking Summer 2025 internship opportunities to apply and expand technical skills.
+            Software Engineer with 3+ years of experience building scalable, high-performance distributed systems and RESTful APIs. Proven track record of reducing system response times by 85% and improving reliability by 30%. Currently pursuing Master's in Software Engineering while actively seeking full-time opportunities and co-op positions to drive innovative technology solutions.
           </p>
           <div className="flex space-x-6 mb-8">
             <a 
