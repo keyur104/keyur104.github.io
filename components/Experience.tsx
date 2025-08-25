@@ -74,7 +74,7 @@ export default function Experience() {
         'Led and organized technical events and workshops for students, improving their understanding of software development.',
         'Collaborated with faculty and students to curate a list of relevant topics for technical discussions and seminars.',
         'Motivated and guided team members in organizing and executing successful software-related events.',
-        'Managed and coordinated the software club\'s projects, ensuring timely delivery and effective collaboration.',
+        'Managed and coordinated the software club&apos;s projects, ensuring timely delivery and effective collaboration.',
         'Helped bridge the gap between students and industry experts through guest lectures and interactive sessions.'
       ]
     }

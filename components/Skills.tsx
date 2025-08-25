@@ -11,7 +11,6 @@ import {
   SiPython, SiCplusplus, SiJavascript, SiDjango, SiSpringboot,
   SiPostgresql, SiMysql, SiPostman, SiVisualstudiocode, SiHeroku, SiEclipseide
 } from 'react-icons/si'
-import { GiSkills } from 'react-icons/gi'
 import { AiOutlineApi } from 'react-icons/ai';
 import { Gauge, Network } from 'lucide-react'
 
