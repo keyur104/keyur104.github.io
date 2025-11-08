@@ -61,6 +61,15 @@ const projects = [
       github: 'https://github.com/keyur104/CarRental.git',
     },
   },
+  {
+    title: 'Fraud Detection System for Card Payments',
+    description:
+      'Engineered a real-time fraud detection backend using Java and Apache Kafka to monitor card transactions. The system detects cross-location card usage within 5 minutes, processes up to 500 transactions per second, and generates automated alerts for suspicious activity. Developed scalable Kafka producer-consumer modules and implemented anomaly detection logic achieving 95% accuracy in fraud identification.',
+    tech: ['Java', 'Apache Kafka', 'Real-time Processing', 'Anomaly Detection'],
+    links: {
+      github: '#',
+    },
+  }
   
 ]
 

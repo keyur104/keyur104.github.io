@@ -15,7 +15,7 @@ interface ExperienceItem {
 export default function Experience() {
   const fullTimeExperience: ExperienceItem[] = [
     {
-      title: 'Senior Systems Engineer',
+      title: 'Senior Software Engineer',
       company: 'Infosys',
       location: 'Pune, India',
       period: 'August 2021 – July 2024',
