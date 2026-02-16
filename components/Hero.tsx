@@ -1,89 +1,144 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Linkedin, Github, Mail } from 'lucide-react'
-import { Tooltip } from 'react-tooltip';
+import { Linkedin, Github, Mail, ArrowRight, FileText } from 'lucide-react'
+
+const roles = [
+  'Software Engineer',
+  'Distributed Systems Builder',
+  'AI Engineer',
+  'Full-Stack Developer',
+]
+
+function TypingEffect() {
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [text, setText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex]
+    const speed = isDeleting ? 40 : 80
+
+    if (!isDeleting && text === currentRole) {
+      const pause = setTimeout(() => setIsDeleting(true), 2000)
+      return () => clearTimeout(pause)
+    }
+
+    if (isDeleting && text === '') {
+      setIsDeleting(false)
+      setRoleIndex((prev) => (prev + 1) % roles.length)
+      return
+    }
+
+    const timeout = setTimeout(() => {
+      setText(currentRole.substring(0, text.length + (isDeleting ? -1 : 1)))
+    }, speed)
+
+    return () => clearTimeout(timeout)
+  }, [text, isDeleting, roleIndex])
+
+  return (
+    <span className="text-emerald-400">
+      {text}
+      <span className="typing-cursor" />
+    </span>
+  )
+}
 
 export default function Hero() {
   return (
-    <section id="about" className="relative pt-32 pb-16 px-6 min-h-screen flex items-center bg-gradient-to-b from-blue-500 to-black">
-      <div className="absolute inset-0 bg-black opacity-40 z-0"></div> {/* Dark overlay */}
-      <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center relative z-10 flex-col md:flex-row">
+    <section id="about" className="relative pt-28 pb-20 px-6 min-h-screen flex items-center bg-[#050505] dot-grid overflow-hidden">
+      {/* Gradient blobs */}
+      <div className="absolute top-20 -left-40 w-[500px] h-[500px] bg-emerald-500/8 rounded-full blur-[150px]" />
+      <div className="absolute bottom-20 -right-40 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-[150px]" />
+      <div className="absolute top-1/2 left-1/3 w-[300px] h-[300px] bg-purple-500/5 rounded-full blur-[120px]" />
+
+      <div className="container mx-auto grid md:grid-cols-5 gap-12 items-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-white order-2 md:order-1"
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="text-white order-2 md:order-1 md:col-span-3"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-shadow-md">
-            {/* Hi, I am */}
-            <br />
-            <span className="text-6xl md:text-7xl text-gradient-to-r from-purple-200 to-indigo-300">Keyur Madane</span>
-          </h1>
-          <h2 className="text-xl md:text-2xl text-blue-200 mb-6 font-semibold">
-          <span className="text-gradient-to-r from-blue-500 to-blue-600">Software Engineer | 3+ Years Experience | Master&apos;s Student</span>
-          </h2>
-          <p className="text-gray-100 mb-8 text-lg leading-relaxed max-w-xl">
-            Software Engineer with 3+ years of experience building scalable, high-performance distributed systems and RESTful APIs. Proven track record of reducing system response times by 85% and improving reliability by 30%. Currently pursuing Master&apos;s in Software Engineering while actively seeking full-time opportunities and co-op positions to drive innovative technology solutions.
-          </p>
-          <div className="flex space-x-6 mb-8">
-            <a 
-              href="mailto:keyur.madane@gmail.com" 
-              data-tooltip-id="email-tooltip"
-              data-tooltip-content="Email"
-              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
-            >
-              <Mail className="w-8 h-8" />
-            </a>
-            <Tooltip id="email-tooltip" />
-
-            <a 
-              href="https://linkedin.com/in/keyur-madane-104" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              data-tooltip-id="linkedin-tooltip"
-              data-tooltip-content="LinkedIn"
-              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
-            >
-              <Linkedin className="w-8 h-8" />
-            </a>
-            <Tooltip id="linkedin-tooltip" />
-
-            <a 
-              href="https://github.com/keyur104" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              data-tooltip-id="github-tooltip"
-              data-tooltip-content="GitHub"
-              className="text-gray-100 hover:text-blue-200 transition-colors transform hover:scale-110"
-            >
-              <Github className="w-8 h-8" />
-            </a>
-            <Tooltip id="github-tooltip" />
-          </div>
-          
-          <Button
-            className="bg-blue-700 hover:bg-blue-900 text-white px-10 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110"
-            size="lg" 
-            onClick={() => window.open('https://github.com/keyur104/resume/blob/main/KeyurMadane_Resume.pdf', '_blank')}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6"
           >
-            My Resume
-          </Button>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            Available for opportunities
+          </motion.div>
+
+          <h1 className="text-6xl md:text-8xl font-black leading-[0.95] mb-6 tracking-tight text-white">
+            Keyur
+            <br />
+            <span className="text-gray-500">Madane</span>
+          </h1>
+
+          <div className="text-2xl md:text-3xl font-mono font-light text-gray-400 mb-6 h-10">
+            <TypingEffect />
+          </div>
+
+          <p className="text-gray-500 mb-10 text-lg leading-relaxed max-w-xl">
+            3+ years building scalable distributed systems & RESTful APIs.
+            Reduced response times by <span className="text-white font-medium">85%</span> and improved reliability by <span className="text-white font-medium">30%</span>.
+            MS Software Engineering @ ASU.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Button
+              className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105 text-base group"
+              size="lg"
+              onClick={() => window.open('https://github.com/keyur104/resume/blob/main/KeyurMadane_Resume.pdf', '_blank')}
+            >
+              <FileText className="w-4 h-4 mr-2" />
+              Resume
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+
+            <div className="flex items-center gap-2">
+              <a
+                href="mailto:keyur.madane@gmail.com"
+                className="p-3 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-white/25 transition-all duration-300"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/keyur-madane-104"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-white/25 transition-all duration-300"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="https://github.com/keyur104"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:border-white/25 transition-all duration-300"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
         </motion.div>
-        
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
-          className="flex justify-center md:justify-end order-1 md:order-2"
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="flex justify-center md:justify-end order-1 md:order-2 md:col-span-2"
         >
-          <div className="relative w-56 h-56 md:w-96 md:h-96 transform -translate-y-18 ">
+          <div className="relative w-56 md:w-96">
+            {/* Glowing gradient ring behind the circular part of the image */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] aspect-square rounded-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 opacity-60 blur-xl" />
             <img
-              src="/keyur-madane1.png"
+              src="/keyur-madane3.png"
               alt="Keyur Madane"
-              className="object-cover shadow-lg transform hover:scale-105 transition-all border-none outline-none ring-0"
+              className="relative z-10 w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
             />
           </div>
         </motion.div>

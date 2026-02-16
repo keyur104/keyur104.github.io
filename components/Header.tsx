@@ -5,25 +5,54 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
+function smoothScroll(e: React.MouseEvent<HTMLAnchorElement>, id: string) {
+  e.preventDefault()
+  const el = document.getElementById(id)
+  if (!el) return
+
+  const targetY = el.getBoundingClientRect().top + window.scrollY - 80 // offset for fixed header
+  const startY = window.scrollY
+  const diff = targetY - startY
+  const duration = Math.min(Math.max(Math.abs(diff) * 0.8, 600), 1500) // 600ms min, 1500ms max
+  let startTime: number | null = null
+
+  function step(timestamp: number) {
+    if (!startTime) startTime = timestamp
+    const elapsed = timestamp - startTime
+    const progress = Math.min(elapsed / duration, 1)
+    // easeInOutCubic for smooth feel
+    const ease = progress < 0.5
+      ? 4 * progress * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 3) / 2
+
+    window.scrollTo(0, startY + diff * ease)
+    if (progress < 1) {
+      requestAnimationFrame(step)
+    }
+  }
+
+  requestAnimationFrame(step)
+}
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const menuItems = ['About', 'Skills', 'Experience', 'Projects', 'Education']
+  const menuItems = ['About', 'Skills', 'Experience', 'Projects', 'Education', 'Contact']
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black backdrop-blur-sm shadow-md text-white font-bold">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#050505]/80 backdrop-blur-2xl border-b border-white/5 text-white">
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo Section */}
           <div className="flex items-center">
             <motion.a
-              href="#about" // This links to the 'about' section
+              href="#about"
+              onClick={(e) => smoothScroll(e, 'about')}
               className="text-white hover:text-gray-200 transition-colors"
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Image
-                src="/icon1.png" // Replace with the path to your logo file
+                src="/icon1.png"
                 alt="Keyur Madane Logo"
                 width={100}
                 height={100}
@@ -32,14 +61,14 @@ export default function Header() {
             </motion.a>
           </div>
 
-          {/* Menu Items */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-1">
             {menuItems.map((item) => (
               <motion.a
                 key={item}
-                href={`#${item.toLowerCase()}`} // This links to each section
-                className="text-white hover:text-gray-200 transition-colors"
-                whileHover={{ scale: 1.1 }}
+                href={`#${item.toLowerCase()}`}
+                onClick={(e) => smoothScroll(e, item.toLowerCase())}
+                className="relative px-4 py-2 text-sm text-gray-500 hover:text-white transition-colors rounded-full hover:bg-white/5"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {item}
@@ -47,9 +76,8 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white hover:text-gray-200"
+            className="md:hidden text-white hover:text-gray-200 p-2"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -57,20 +85,22 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden pt-4 pb-2"
+            exit={{ opacity: 0, y: -10 }}
+            className="md:hidden pt-4 pb-2 border-t border-white/5 mt-4"
           >
             {menuItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="block py-2 text-white hover:text-gray-200 transition-colors"
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  smoothScroll(e, item.toLowerCase())
+                  setIsOpen(false)
+                }}
+                className="block py-3 px-4 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
               >
                 {item}
               </a>

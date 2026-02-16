@@ -15,6 +15,17 @@ interface ExperienceItem {
 export default function Experience() {
   const fullTimeExperience: ExperienceItem[] = [
     {
+      title: 'AI Engineer Intern',
+      company: 'Byteable AI Inc.',
+      location: 'Phoenix, AZ, USA',
+      period: 'January 2026 – Present',
+      achievements: [
+        'Develop multi-agent AI workflows in VS Code and web IDE, cutting enterprise PoC generation time from 45 to 10 minutes.',
+        'Build 6 MCP integrations for CI/CD, cloud, and GitHub into Byteable\'s platform, reducing manual DevOps setup by 60%.',
+        'Engineer validation logic for AI-generated scaffolding, achieving 92% pass rate across 40+ enterprise-grade test suites.'
+      ]
+    },
+    {
       title: 'Senior Software Engineer',
       company: 'Infosys',
       location: 'Pune, India',
@@ -80,81 +91,84 @@ export default function Experience() {
     }
   ]
 
-  const renderExperienceCard = (exp: ExperienceItem, index: number, sectionDelay: number = 0) => (
-    <motion.div
-      key={index}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: (index * 0.1) + sectionDelay }}
-      viewport={{ once: true }}
-      className="mb-12 relative"
-    >
-      <div className="bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-md">
-        <div className="flex items-center justify-center gap-4">
-          {/* ASU Logo */}
-          {exp.company === 'Arizona State University' && (
-            <img
-              src="/asu_logo1.png"
-              alt="Arizona State University Logo"
-              className="w-14 h-12 object-contain"
-            />
-          )}
-          {/* Infosys Logo */}
-          {exp.company === 'Infosys' && (
-            <img
-              src="/infosys_logo.png"
-              alt="Infosys Logo"
-              className="w-14 h-12 object-contain"
-            />
-          )}
-          {/* Chegg Logo */}
-          {exp.company === 'Chegg' && (
-            <img
-              src="/chegg_logo.png"
-              alt="Chegg Logo"
-              className="w-14 h-12 object-contain"
-            />
-          )}
-          {/* D.Y. Patil Logo */}
-          {exp.company === 'Dr. D.Y. Patil Institute of Technology' && (
-            <img
-              src="/dpu_logo.jpeg"
-              alt="D.Y. Patil Institute of Technology Logo"
-              className="w-14 h-12 object-contain"
-            />
-          )}
-          <h3 className="text-2xl text-center font-bold text-blue-600 mb-2">{exp.title}</h3>
-        </div>
-        <div className="flex items-center text-white mb-4">
-          <div className="flex justify-center items-center mb-1">
-            <Briefcase className="w-5 h-5 mr-2" />
-            <span className="mr-4 font-bold">{exp.company}</span>
+  const getCompanyLogo = (company: string) => {
+    const logos: Record<string, { src: string; alt: string }> = {
+      'Arizona State University': { src: '/asu_logo1.png', alt: 'Arizona State University Logo' },
+      'Infosys': { src: '/infosys_logo.png', alt: 'Infosys Logo' },
+      'Byteable AI Inc.': { src: '/logo_byte.png', alt: 'Byteable AI Logo' },
+      'Chegg': { src: '/chegg_logo.png', alt: 'Chegg Logo' },
+      'Dr. D.Y. Patil Institute of Technology': { src: '/dpu_logo.jpeg', alt: 'D.Y. Patil Institute of Technology Logo' },
+    }
+    return logos[company] || null
+  }
+
+  const renderExperienceCard = (exp: ExperienceItem, index: number, sectionDelay: number = 0) => {
+    const logo = getCompanyLogo(exp.company)
+    return (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5, delay: (index * 0.1) + sectionDelay }}
+        viewport={{ once: true }}
+        className="relative pl-8 md:pl-12 pb-12 last:pb-0"
+      >
+        {/* Timeline line */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/50 to-transparent" />
+
+        {/* Timeline dot */}
+        <div className="absolute left-0 top-2 -translate-x-1/2 w-3 h-3 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20" />
+
+        <div className="gradient-border p-6">
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-4">
+              {logo && (
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="w-12 h-12 object-contain rounded-lg bg-white/10 p-1"
+                />
+              )}
+              <div>
+                <h3 className="text-xl font-bold text-white">{exp.title}</h3>
+                <p className="text-emerald-400 font-semibold text-sm">{exp.company}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5" />
+                {exp.location}
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5" />
+                {exp.period}
+              </span>
+            </div>
+
+            <ul className="space-y-2">
+              {exp.achievements.map((achievement, i) => (
+                <motion.li
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  viewport={{ once: true }}
+                  className="text-gray-400 text-sm leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[9px] before:w-1.5 before:h-1.5 before:rounded-full before:bg-emerald-500/40"
+                >
+                  {achievement}
+                </motion.li>
+              ))}
+            </ul>
           </div>
-          <MapPin className="w-5 h-5 mr-2" />
-          <span className="mr-4 font-bold">{exp.location}</span>
-          <Calendar className="w-5 h-5 mr-2" />
-          <span>{exp.period}</span>
         </div>
-        <ul className="list-disc list-inside text-white font-bold space-y-2">
-          {exp.achievements.map((achievement, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-            >
-              {achievement}
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
-  )
+      </motion.div>
+    )
+  }
 
   return (
-    <section id="experience" className="relative py-20 px-6">
-      <div className="container mx-auto relative z-10">
+    <section id="experience" className="relative py-24 px-6 bg-[#050505] dot-grid">
+      <div className="container mx-auto max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -162,10 +176,13 @@ export default function Experience() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-4">
+            Experience
+          </h2>
+          <p className="text-gray-600 text-lg">Where I&apos;ve worked and what I&apos;ve built</p>
         </motion.div>
 
-        {/* Professional Experience Section */}
+        {/* Professional Experience */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -173,21 +190,31 @@ export default function Experience() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h3 className="text-3xl font-bold text-blue-500 mb-8 text-center">Professional Experience</h3>
-          <div className="w-full px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2 rounded-lg bg-emerald-500/10">
+              <Briefcase className="w-4 h-4 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white">Professional Experience</h3>
+          </div>
+          <div>
             {fullTimeExperience.map((exp, index) => renderExperienceCard(exp, index, 0))}
           </div>
         </motion.div>
 
-        {/* Research, Leadership & Part-Time Experience Section */}
+        {/* Part-time / Research Experience */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-3xl font-bold text-blue-500 mb-8 text-center">Research, Leadership & Part-Time Experience</h3>
-          <div className="w-full px-4">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="p-2 rounded-lg bg-emerald-500/10">
+              <Briefcase className="w-4 h-4 text-emerald-400" />
+            </div>
+            <h3 className="text-xl font-bold text-white">Research, Leadership & Part-Time</h3>
+          </div>
+          <div>
             {partTimeExperience.map((exp, index) => renderExperienceCard(exp, index, 0.2))}
           </div>
         </motion.div>

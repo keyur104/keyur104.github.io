@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Showcasing Skills",
+  title: "Keyur Madane | Software Engineer",
+  description: "Software Engineer with 3+ years of experience building scalable distributed systems",
   icons: {
     icon: [
       { url: '/favicon.ico' },

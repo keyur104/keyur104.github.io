@@ -10,22 +10,15 @@ import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen text-gray-800 ">
+    <main className="min-h-screen bg-[#050505] text-gray-100">
       <Header />
       <Hero />
-      <section id="page" className='bg-gradient-to-b from-black to-blue-900'>
-      {/* <div className="absolute inset-0 bg-black opacity-40 z-0"></div> */}
-      <Experience />
       <Skills />
-      </section>
-      <section className='bg-gradient-to-b from-blue-900 to-black'>
+      <Experience />
       <Projects />
       <Education />
-      </section>
       <Contact />
       <Footer />
-      
     </main>
   )
 }
-
