@@ -18,7 +18,7 @@ export default function Experience() {
       title: 'AI Engineer Intern',
       company: 'Byteable AI Inc.',
       location: 'Phoenix, AZ, USA',
-      period: 'January 2026 – Present',
+      period: 'January 2026 – May 2026',
       achievements: [
         'Develop multi-agent AI workflows in VS Code and web IDE, cutting enterprise PoC generation time from 45 to 10 minutes.',
         'Build 6 MCP integrations for CI/CD, cloud, and GitHub into Byteable\'s platform, reducing manual DevOps setup by 60%.',
@@ -26,7 +26,7 @@ export default function Experience() {
       ]
     },
     {
-      title: 'Senior Software Engineer',
+      title: 'Senior Systems Engineer',
       company: 'Infosys',
       location: 'Pune, India',
       period: 'August 2021 – July 2024',
@@ -49,7 +49,7 @@ export default function Experience() {
       title: 'Research Assistant - Software Engineer',
       company: 'Arizona State University',
       location: 'Tempe, AZ, USA',
-      period: 'May 2025 – Present',
+      period: 'Aug 2025 – Dec 2025',
       achievements: [
         'Automated Qualtrics survey dispatch via Spring Boot with CSV validation, cutting manual setup time by 90%.',
         'Created custom CSV validation and error handling to ensure 100% data accuracy in survey scheduling.',

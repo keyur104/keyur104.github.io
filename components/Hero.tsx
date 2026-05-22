@@ -62,7 +62,7 @@ export default function Hero() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
           className="text-white order-2 md:order-1 md:col-span-3"
         >
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -70,7 +70,7 @@ export default function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             Available for opportunities
-          </motion.div>
+          </motion.div> */}
 
           <h1 className="text-6xl md:text-8xl font-black leading-[0.95] mb-6 tracking-tight text-white">
             Keyur
@@ -130,16 +130,18 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          className="flex justify-center md:justify-end order-1 md:order-2 md:col-span-2"
+          className="flex justify-center md:justify-start items-center order-1 md:order-2 md:col-span-2"
         >
-          <div className="relative w-56 md:w-96">
-            {/* Glowing gradient ring behind the circular part of the image */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[100%] aspect-square rounded-full bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 opacity-60 blur-xl" />
-            <img
-              src="/keyur-madane3.png"
-              alt="Keyur Madane"
-              className="relative z-10 w-full h-auto object-contain hover:scale-105 transition-transform duration-500"
-            />
+          <div className="relative w-72 md:w-96">
+            {/* Glow behind circle */}
+            <div className="absolute inset-0 rounded-full bg-white/5 blur-2xl scale-110" />
+            <div className="relative z-10 rounded-full overflow-hidden aspect-square ring-2 ring-emerald-500/30">
+              <img
+                src="/Hero_img-removebg-preview.png"
+                alt="Keyur Madane"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+              />
+            </div>
           </div>
         </motion.div>
       </div>
