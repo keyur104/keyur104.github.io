@@ -130,7 +130,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-          className="flex justify-center md:justify-start items-center order-1 md:order-2 md:col-span-2"
+          className="flex justify-center md:justify-end items-center order-1 md:order-2 md:col-span-2"
         >
           <div className="relative w-72 md:w-96">
             {/* Glow behind circle */}
